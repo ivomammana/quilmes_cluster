@@ -111,6 +111,96 @@ document.getElementById("averagesGrid").innerHTML = `
   </div>
 `;
 
+// ===== TABLA DE PARTIDOS =====
+const table = document.getElementById("gamesTable");
+const thead = table.querySelector("thead");
+const tbody = table.querySelector("tbody");
+const allGames = [];
+
+
+thead.innerHTML = `
+  <tr>
+    <th>GAME</th>
+    <th>PTS</th>
+    <th>REB</th>
+    <th>ASS</th>
+    <th>STL</th>
+    <th>BLK</th>
+    <th>2PT%</th>
+    <th>3PT%</th>
+    <th>TO</th>
+  </tr>
+`;
+
+
+tbody.innerHTML = "";
+
+
+let lastGameName = "";
+let totalEff = 0;
+let gamesCount = 0;
+
+
+for (let i = 0; i < rows.length; i++) {
+  const row = rows[i]?.c;
+  if (!row) continue;
+
+
+
+  // Nombre del partido (puede venir combinado)
+  if (row[0]?.v) {
+    lastGameName = row[0].v;
+  }
+
+  // Si no hay partido aún, seguimos
+  if (!lastGameName) continue;
+
+  const pts = row[1]?.v;
+
+  // 🔴 CLAVE: si no hay PTS, no es una fila de partido
+  if (pts === null || pts === undefined) continue;
+
+  const rebs = row[2]?.v ?? 0;
+  const assists = row[3]?.v ?? 0;
+  const steals = row[4]?.v ?? 0;
+  const blocks = row[5]?.v ?? 0;
+  const twoPtPct = row[8]?.v ?? 0;
+  const threePtPct = row[11]?.v ?? 0;
+  const turnovers = row[12]?.v ?? 0;
+
+
+  const eff = pts + rebs + assists + steals + blocks - turnovers;
+totalEff += eff;
+gamesCount++;
+
+
+const tr = document.createElement("tr");
+tr.innerHTML = `
+  <td>${lastGameName}</td>
+  <td>${pts}</td>
+  <td>${rebs}</td>
+  <td>${assists}</td>
+  <td>${steals}</td>
+  <td>${blocks}</td>
+  <td>${formatPct(twoPtPct)}</td>
+  <td>${formatPct(threePtPct)}</td>
+  <td>${turnovers}</td>
+`;
+
+
+  tbody.appendChild(tr);
+}
+const avgEff = gamesCount ? totalEff / gamesCount : 0;
+
+// Escala 1–10 (30 es un buen estándar de eficiencia)
+const effRating = Math.min(10, (avgEff / 5) * 10).toFixed(1);
+
+document.getElementById("efficiencyValue").textContent = effRating;
+
+
+
+
+
          })
     .catch(err => {
       console.error("Error cargando hoja del jugador:", err);
@@ -122,3 +212,13 @@ function formatPct(value, decimals = 1) {
 }
 
 loadPlayerAverages();
+
+// ===== DEBUG PARTIDOS =====
+
+// Encabezados (fila 12 → index 11)
+const headersRow = rows[11]?.c;
+console.log("HEADERS:", headersRow?.map(c => c?.v));
+
+// Primer partido (fila 13 → index 12)
+const firstGameRow = rows[12]?.c;
+console.log("GAME 1:", firstGameRow?.map(c => c?.v));

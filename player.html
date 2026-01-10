@@ -18,12 +18,18 @@
 <div class="container">
 
   <header class="player-header">
+    <div class="player-left"></div>
     <div class="player-photo"></div>
 
     <div>
       <h1 id="playerName">Jugador</h1>
       <span id="playerId"></span>
     </div>
+
+    <div class="efficiency-box">
+    <span class="eff-label">EFFICIENCY</span>
+    <span id="efficiencyValue" class="eff-value">–</span>
+  </div>
   </header>
 
   <section class="averages">
@@ -38,6 +44,12 @@
       <tbody></tbody>
     </table>
   </section>
+
+  <button id="toggleGames" class="toggle-games-btn">
+  Ver todos los partidos
+</button>
+
+
 
 </div>
 
