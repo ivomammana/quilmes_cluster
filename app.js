@@ -56,15 +56,18 @@ const params = new URLSearchParams(window.location.search);
 const sheetName = params.get("player");
 
 // Debug visual
-const debug = document.getElementById("debug");
 const title = document.getElementById("playerName");
+const debug = document.getElementById("debug");
 
-if (!sheetName) {
-  title.textContent = "Jugador no especificado";
-  debug.textContent = "❌ Falta parámetro ?player en la URL";
-} else {
-  title.textContent = `Jugador: ${sheetName}`;
-  debug.textContent = `✅ Parámetro player recibido:\n${sheetName}`;
+if (title && debug) {
+  if (!sheetName) {
+    title.textContent = "Jugador no especificado";
+    debug.textContent = "❌ Falta parámetro ?player en la URL";
+  } else {
+    title.textContent = `Jugador: ${sheetName}`;
+    debug.textContent = `✅ Parámetro player recibido:\n${sheetName}`;
+  }
 }
+
 
 console.log("PLAYER PARAM:", sheetName);

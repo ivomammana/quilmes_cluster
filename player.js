@@ -63,6 +63,11 @@ const played    = rows[1]?.c[11]?.v ?? 0;
 const twoPtPct   = rows[2]?.c[8]?.v ?? 0;
 const threePtPct = rows[2]?.c[10]?.v ?? 0;
 
+// 👉 EFICIENCIA (L8)
+const efficiency = rows[2]?.c[11]?.v ?? 0;
+
+console.log("EFICIENCIA (L8):", efficiency);
+
 
 document.getElementById("averagesGrid").innerHTML = `
   <div>
@@ -106,10 +111,17 @@ document.getElementById("averagesGrid").innerHTML = `
   </div>
 
   <div>
+    <strong>EFF</strong>
+    <span class="stat-value">${efficiency}</span>
+  </div>
+
+  <div>
     <strong>PLAYED</strong>
     <span class="stat-value">${played}</span>
   </div>
 `;
+
+
 
 // ===== TABLA DE PARTIDOS =====
 const table = document.getElementById("gamesTable");
@@ -137,8 +149,7 @@ tbody.innerHTML = "";
 
 
 let lastGameName = "";
-let totalEff = 0;
-let gamesCount = 0;
+
 
 
 for (let i = 0; i < rows.length; i++) {
@@ -169,9 +180,7 @@ for (let i = 0; i < rows.length; i++) {
   const turnovers = row[12]?.v ?? 0;
 
 
-  const eff = pts + rebs + assists + steals + blocks - turnovers;
-totalEff += eff;
-gamesCount++;
+
 
 
 const tr = document.createElement("tr");
@@ -190,15 +199,6 @@ tr.innerHTML = `
 
   tbody.appendChild(tr);
 }
-const avgEff = gamesCount ? totalEff / gamesCount : 0;
-
-// Escala 1–10 (30 es un buen estándar de eficiencia)
-const effRating = Math.min(10, (avgEff / 5) * 10).toFixed(1);
-
-document.getElementById("efficiencyValue").textContent = effRating;
-
-
-
 
 
          })
