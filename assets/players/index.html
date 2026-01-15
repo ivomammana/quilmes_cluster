@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Quilmes Cluster 🏀</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+
+ <script src="app.js"></script>
+<script src="ranking.js"></script>
+
+</body>
+
+<body>
+
+  <div class="container">
+   <h1 class="title">
+  <span class="title-main">QUILMES CLUSTER 🏀</span>
+  <span class="title-sub">Season 26</span>
+</h1>
+
+<section id="ranking">
+  <h2>Rankings de la temporada</h2>
+  <div id="rankingCards" class="cards"></div>
+</section>
+
+
+
+<div class="player-selector">
+  <label for="playerSelect">Seleccionar jugador</label>
+
+  <select id="playerSelect">
+    select.innerHTML = `<option value="">Seleccionar jugador</option>`;
+
+  </select>
+
+  <button id="viewPlayerBtn" disabled>VER</button>
+</div>
+
+<!-- este script andaba bien... 
+  <script src="app.js"></script>-->
+
+</body>
+</html>
