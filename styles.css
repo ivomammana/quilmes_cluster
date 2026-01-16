@@ -590,3 +590,50 @@ section h2 {
     font-size: 0.85rem;
   }
 }
+
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: #ff7a00;
+  margin-top: 6px;
+}
+
+.games-table-wrapper {
+  overflow-x: auto;
+}
+
+.games table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.games th,
+.games td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.games thead th {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.games tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+}

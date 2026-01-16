@@ -15,6 +15,21 @@
 </head>
 <body>
 
+  <!-- BANNER SUPERIOR -->
+<header class="season-banner">
+  <div class="banner-content">
+    <img src="assets/players/logoliga.png" 
+         alt="Liga Quilmes Cluster" 
+         class="league-logo">
+
+    <div class="banner-text">
+      <h1>Rendimiento del jugador</h1>
+      <span class="season">Season 26</span>
+    </div>
+  </div>
+</header>
+
+
 <div class="container">
 
   <header class="player-header">
@@ -32,18 +47,23 @@
   </div>
   </header>
 
-  <section class="averages">
-    <h2>Promedios – Temporada 2026</h2>
-    <div id="averagesGrid" class="averages-grid"></div>
-  </section>
+ <section class="averages">
+  <h3 class="section-title">Promedios por partido</h3>
+  <div id="averagesGrid" class="averages-grid"></div>
+</section>
 
-  <section class="games">
-    <h2>Partidos</h2>
+
+<section class="games">
+  <h3 class="section-title">Partidos</h3>
+
+  <div class="games-table-wrapper">
     <table id="gamesTable">
       <thead></thead>
       <tbody></tbody>
     </table>
-  </section>
+  </div>
+</section>
+
 
   <button id="toggleGames" class="toggle-games-btn">
   Ver todos los partidos
