@@ -47,6 +47,8 @@ document.getElementById("playerId").textContent = numberFromUrl;
 
 
 
+
+
 // ===== PROMEDIOS =====
 // Fila 0
 const pts     = rows[0]?.c[4]?.v ?? 0;
@@ -68,36 +70,49 @@ const efficiency = rows[2]?.c[11]?.v ?? 0;
 
 console.log("EFICIENCIA (L8):", efficiency);
 
+// FORMATEO DE DECIMALES
+function formatStat(value, decimals = 1) {
+  return Number(value).toFixed(decimals);
+}
+
+function formatPct(value, decimals = 1) {
+  return `${(value * 100).toFixed(decimals)}%`;
+}
+
+function formatInt(value) {
+  return Math.round(value);
+}
+
 
 document.getElementById("averagesGrid").innerHTML = `
   <div>
     <strong>PTS</strong>
-    <span class="stat-value">${pts}</span>
+    <span class="stat-value">${formatStat(pts)}</span>
   </div>
 
   <div>
     <strong>REB</strong>
-    <span class="stat-value">${rebs}</span>
+    <span class="stat-value">${formatStat(rebs)}</span>
   </div>
 
   <div>
     <strong>ASS</strong>
-    <span class="stat-value">${assists}</span>
+    <span class="stat-value">${formatStat(assists)}</span>
   </div>
 
   <div>
     <strong>STL</strong>
-    <span class="stat-value">${steals}</span>
+    <span class="stat-value">${formatStat(steals)}</span>
   </div>
 
   <div>
     <strong>BLK</strong>
-    <span class="stat-value">${blocks}</span>
+    <span class="stat-value">${formatStat(blocks)}</span>
   </div>
 
   <div>
     <strong>TO</strong>
-    <span class="stat-value">${turnovers}</span>
+    <span class="stat-value">${formatStat(turnovers)}</span>
   </div>
 
   <div>
@@ -112,14 +127,15 @@ document.getElementById("averagesGrid").innerHTML = `
 
   <div>
     <strong>EFF</strong>
-    <span class="stat-value">${efficiency}</span>
+    <span class="stat-value">${formatStat(efficiency)}</span>
   </div>
 
   <div>
     <strong>PLAYED</strong>
-    <span class="stat-value">${played}</span>
+    <span class="stat-value">${formatInt(played)}</span>
   </div>
 `;
+
 
 
 

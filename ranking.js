@@ -1,3 +1,17 @@
+// ===== FORMAT HELPERS =====
+function formatStat(value, decimals = 1) {
+  return Number(value).toFixed(decimals);
+}
+
+function formatInt(value) {
+  return Math.round(value);
+}
+
+function formatPct(value, decimals = 1) {
+  return `${(value * 100).toFixed(decimals)}%`;
+}
+
+
 function loadRanking() {
   const url =
     `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq` +
@@ -23,12 +37,16 @@ function loadRanking() {
         const cleanName = nombre.replace(/^#\d+\s*/, "");
 
         const valor = row.c[2]?.v;
-        let displayValue = valor;
+let displayValue = valor;
 
-// Si es porcentaje, convertir a %
 if (estadistica === "2PT%" || estadistica === "3PT%") {
-  displayValue = `${(valor * 100).toFixed(1)}%`;
+  displayValue = formatPct(valor);
+} else if (estadistica === "TO" || estadistica === "BLK") {
+  displayValue = formatStat(valor, 1);
+} else {
+  displayValue = formatStat(valor, 1);
 }
+
 
         if (!estadistica || !nombre || valor == null) return;
 
