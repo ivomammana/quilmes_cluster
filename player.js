@@ -1,3 +1,5 @@
+
+
 const SPREADSHEET_ID = "1Bf1pOOSn-nCrGlalyHqA8u6End_0iVsv10Na-AI42v0";
 const params = new URLSearchParams(window.location.search);
 const sheetName = params.get("player");
@@ -5,6 +7,20 @@ const [numberFromUrl, ...nameParts] = sheetName.split(" ");
 const playerNameFromUrl = nameParts.join(" ");
 
 console.log("Jugador seleccionado:", sheetName);
+
+// ===== DICCIONARIO DE ESTADÍSTICAS =====
+const STAT_INFO = {
+  PTS: "Puntos por partido",
+  REB: "Rebotes por partido",
+  ASS: "Asistencias por partido",
+  STL: "Robos por partido",
+  BLK: "Tapones por partido",
+  TO: "Pérdidas por partido",
+  "2PT%": "Porcentaje de dobles",
+  "3PT%": "Porcentaje de triples",
+  EFF: "Eficiencia general del jugador",
+  PLAYED: "Partidos jugados"
+};
 
 function loadPlayerAverages() {
   if (!sheetName) return;
@@ -85,57 +101,85 @@ function formatInt(value) {
 
 
 document.getElementById("averagesGrid").innerHTML = `
-  <div>
+  <div class="avg-item" data-stat="PTS">
     <strong>PTS</strong>
     <span class="stat-value">${formatStat(pts)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="REB">
     <strong>REB</strong>
     <span class="stat-value">${formatStat(rebs)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="ASS">
     <strong>ASS</strong>
     <span class="stat-value">${formatStat(assists)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="STL">
     <strong>STL</strong>
     <span class="stat-value">${formatStat(steals)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="BLK">
     <strong>BLK</strong>
     <span class="stat-value">${formatStat(blocks)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="TO">
     <strong>TO</strong>
     <span class="stat-value">${formatStat(turnovers)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="2PT%">
     <strong>2PT%</strong>
     <span class="stat-value">${formatPct(twoPtPct)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="3PT%">
     <strong>3PT%</strong>
     <span class="stat-value">${formatPct(threePtPct)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="EFF">
     <strong>EFF</strong>
     <span class="stat-value">${formatStat(efficiency)}</span>
   </div>
 
-  <div>
+  <div class="avg-item" data-stat="PLAYED">
     <strong>PLAYED</strong>
     <span class="stat-value">${formatInt(played)}</span>
   </div>
 `;
 
+
+// tooltip //
+const tooltip = document.getElementById("statTooltip");
+
+document.addEventListener("click", (e) => {
+  const statItem = e.target.closest(".avg-item");
+
+  // Click afuera → ocultar
+  if (!statItem) {
+    tooltip.classList.add("hidden");
+    tooltip.classList.remove("visible");
+    return;
+  }
+
+  const statKey = statItem.dataset.stat;
+  const info = STAT_INFO[statKey];
+  if (!info) return;
+
+  const rect = statItem.getBoundingClientRect();
+
+  tooltip.textContent = info;
+  tooltip.style.top = `${window.scrollY + rect.top - 32}px`;
+  tooltip.style.left = `${window.scrollX + rect.left + rect.width / 2}px`;
+  tooltip.style.transform = "translateX(-50%)";
+
+  tooltip.classList.remove("hidden");
+  tooltip.classList.add("visible");
+});
 
 
 

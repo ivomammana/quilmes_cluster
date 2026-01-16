@@ -15,39 +15,44 @@
 </head>
 
 
- <script src="app.js"></script>
-<script src="ranking.js"></script>
-
-</body>
 
 <body>
 
-  <div class="container">
-   <h1 class="title">
-  <span class="title-main">QUILMES CLUSTER 🏀</span>
-  <span class="title-sub">Season 26</span>
-</h1>
+ <!-- BANNER SUPERIOR -->
+<header class="season-banner">
+  <div class="banner-content">
+    <img 
+      src="assets/img/logoliga.png"
+      alt="Liga Quilmes Cluster"
+      class="league-logo"
+    >
 
-<section id="ranking">
-  <h2>Rankings de la temporada</h2>
-  <div id="rankingCards" class="cards"></div>
-</section>
+    <div class="banner-text">
+      <h1>Promedios de la Temporada</h1>
+      <span class="season">Season 26</span>
+    </div>
+  </div>
+</header>
 
 
+  <!-- CONTENIDO -->
+  <main class="container">
 
-<div class="player-selector">
-  <label for="playerSelect">Seleccionar jugador</label>
+    <section id="ranking">
+      <div id="rankingCards" class="cards"></div>
+    </section>
 
-  <select id="playerSelect">
-    select.innerHTML = `<option value="">Seleccionar jugador</option>`;
+    <div class="player-selector">
+      <label for="playerSelect">Seleccionar jugador</label>
+      <select id="playerSelect"></select>
+      <button id="viewPlayerBtn" disabled>VER</button>
+    </div>
 
-  </select>
+  </main>
 
-  <button id="viewPlayerBtn" disabled>VER</button>
-</div>
-
-<!-- este script andaba bien... 
-  <script src="app.js"></script>-->
+  <script src="app.js"></script>
+  <script src="ranking.js"></script>
 
 </body>
+
 </html>

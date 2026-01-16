@@ -20,22 +20,18 @@ body {
   background: var(--bg-main);
   color: var(--text-main);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
 }
 
-/* CONTENEDOR */
 .container {
-  width: 100%;
-  max-width: 420px;
-  padding: 1.5rem;
-  background: var(--bg-card);
-  border-radius: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 2rem;
 }
+
 
 /* TÍTULO */
 .title {
@@ -482,3 +478,99 @@ section h2 {
     font-size: 1.4rem;
   }
 }
+
+
+/* TOOLTIP ESTILOS */
+.stat-tooltip {
+  position: absolute;
+  background: #1c1c1c;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.stat-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-tooltip.hidden {
+  display: none;
+}
+
+/* ===== BANNER TEMPORADA ===== */
+
+.season-banner {
+  background: linear-gradient(135deg, #0b0b0b, #151515);
+  padding: 28px 16px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #ff7a00; /* naranja liga */
+}
+
+.banner-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.league-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+}
+
+.banner-text h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+}
+
+.banner-text .season {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ff7a00;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .banner-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .league-logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .banner-text h1 {
+    font-size: 1.3rem;
+  }
+}
+.banner-text h1 {
+  position: relative;
+}
+
+.banner-text h1::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #ff7a00;
+  margin-top: 6px;
+}
+
