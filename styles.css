@@ -523,11 +523,19 @@ section h2 {
   gap: 20px;
 }
 
+/* LOGO */
 .league-logo {
   width: 64px;
   height: 64px;
   object-fit: contain;
+  flex-shrink: 0;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+}
+
+/* TEXTO */
+.banner-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .banner-text h1 {
@@ -536,32 +544,6 @@ section h2 {
   font-weight: 800;
   letter-spacing: 0.6px;
   color: #ffffff;
-}
-
-.banner-text .season {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #ff7a00;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 600px) {
-  .banner-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .league-logo {
-    width: 90px;
-    height: 90px;
-  }
-
-  .banner-text h1 {
-    font-size: 1.3rem;
-  }
-}
-.banner-text h1 {
   position: relative;
 }
 
@@ -574,3 +556,37 @@ section h2 {
   margin-top: 6px;
 }
 
+.banner-text .season {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ff7a00;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* ===== MOBILE APP STYLE ===== */
+@media (max-width: 600px) {
+  .banner-content {
+    flex-direction: row;      /* 🔥 logo izquierda + texto derecha */
+    align-items: center;
+    text-align: left;
+  }
+
+  .league-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .banner-text {
+    align-items: flex-start;
+  }
+
+  .banner-text h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .banner-text .season {
+    font-size: 0.85rem;
+  }
+}
