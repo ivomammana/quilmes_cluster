@@ -59,37 +59,76 @@ label {
   color: var(--text-muted);
 }
 
+/* ===== PLAYER SELECTOR ===== */
 .player-selector {
-  max-width: 360px;
-  margin: 2rem auto;
+  max-width: 400px;              /* un poco más ancho */
+  margin: 3rem auto;             /* separado de las cards */
+  padding: 1.5rem 1.25rem;       /* espacio interior */
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+  background: linear-gradient(135deg, #111, #1a1a1a); /* fondo oscuro con degradado */
+  border-radius: 16px;           /* bordes redondeados */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35); /* sombra para destacar */
+  border: 2px solid #ff7a00;     /* borde naranja similar al banner */
 }
 
+/* LABEL */
 .player-selector label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.player-selector select,
-.player-selector button {
-  padding: 0.6rem 0.75rem;
   font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  color: #ccc;
+  font-weight: 600;
 }
 
-.player-selector button {
-  background: #111;
-  color: white;
+/* SELECTOR */
+.player-selector select {
+  padding: 0.8rem 1rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  border: 1px solid #555;
+  background: #222;
+  color: #fff;
   cursor: pointer;
-  opacity: 0.6;
+  transition: all 0.2s ease-in-out;
+}
+
+.player-selector select:hover,
+.player-selector select:focus {
+  border-color: #ff7a00;
+  box-shadow: 0 0 8px rgba(255, 122, 0, 0.6);
+  outline: none;
+}
+
+/* BOTÓN */
+.player-selector button {
+  padding: 0.9rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  background: #ff7a00;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.8;
 }
 
 .player-selector button:enabled {
   opacity: 1;
 }
+
+.player-selector button:hover:enabled {
+  background: #ff9500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.5);
+}
+
+.player-selector button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 
 /* ===== RESET BÁSICO ===== */
 * {
@@ -395,90 +434,153 @@ section h2 {
   font-weight: 800;
 }
 
-/* RANKING GRIDS */
+/* =========================
+   RANKING GRIDS
+========================= */
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+/* 📌 Sección de ranking destacada */
+#ranking {
+  padding: 3rem 1.5rem; /* más espacio arriba/abajo y lateral */
+  background: linear-gradient(180deg, #0a0a0a, #111);
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1400px; /* más ancho en escritorio */
+  box-shadow: 0 6px 25px rgba(0,0,0,0.6);
 }
 
+/* Título de la sección */
+.ranking-title {
+  color: #ff7a00;
+  font-size: 1.8rem; /* un poco más grande */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
 
+/* GRID DE CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 3 columnas en escritorio */
+  gap: 28px; /* un poco más de espacio */
+}
+
+/* CARD INDIVIDUAL */
 .card {
   cursor: pointer;
   background: linear-gradient(145deg, #111, #1a1a1a);
-  padding: 16px 12px 18px;
-  border-radius: 14px;
+  padding: 28px 24px 30px; /* más padding para hacerla más grande */
+  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px; /* más espacio entre elementos */
 
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
+/* HOVER CARD */
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 25px rgba(0,0,0,.5);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 36px rgba(0,0,0,0.65), 0 0 10px rgba(255, 122, 0, 0.4);
+  background: linear-gradient(145deg, #1a1a1a, #222);
 }
 
-
+/* IMG DEL JUGADOR */
 .card img {
-  width: 84px;
-  height: 84px;
+  width: 96px; /* más grande */
+  height: 96px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   background: #222;
-}
-
-
-.stat {
-  opacity: 0.65;
-  font-size: 1.3rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-
-.value {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 2px;
-}
-
-
-.card h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 2px 0 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover img {
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+  transform: scale(1.07);
+  box-shadow: 0 0 0 5px rgba(255, 122, 0, 0.5);
 }
 
-/* 📱 Mobile: 2 columnas fijas */
-@media (max-width: 600px) {
+/* NOMBRE DEL JUGADOR */
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 4px 0 0;
+}
+
+/* ESTADÍSTICA */
+.stat {
+  font-size: 1.2rem;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* VALOR DE LA ESTADÍSTICA */
+.value {
+  font-size: 2.6rem; /* más grande */
+  font-weight: 800;
+  color: #ff7a00;
+  margin-top: 4px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* 📱 TABLET: 2 columnas + cards ligeramente más grandes */
+@media (max-width: 900px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 22px;
   }
-}
 
-@media (max-width: 600px) {
+  .card {
+    padding: 24px 20px 26px;
+    gap: 20px;
+  }
+
   .card img {
-    width: 72px;
-    height: 72px;
+    width: 88px;
+    height: 88px;
   }
 
   .value {
-    font-size: 1.4rem;
+    font-size: 2.3rem;
+  }
+
+  .stat {
+    font-size: 1.15rem;
   }
 }
 
+/* 📱 MOBILE: 2 columnas + imágenes y cards un poco más grandes que antes */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 1rem;
+  }
+
+  .card {
+    padding: 16px 12px 18px;
+    gap: 12px;
+  }
+
+  .card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .value {
+    font-size: 1.8rem;
+  }
+
+  .stat {
+    font-size: 1.1rem;
+  }
+}
 
 /* TOOLTIP ESTILOS */
 .stat-tooltip {
@@ -505,6 +607,9 @@ section h2 {
 .stat-tooltip.hidden {
   display: none;
 }
+
+
+
 
 /* ===== BANNER TEMPORADA ===== */
 

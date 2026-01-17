@@ -80,4 +80,3 @@ if (estadistica === "2PT%" || estadistica === "3PT%") {
 
 document.addEventListener("DOMContentLoaded", loadRanking);
 
-
