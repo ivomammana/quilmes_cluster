@@ -876,3 +876,9 @@ section h2 {
     line-height: 1.4;
   }
 }
+
+/* ===== AJUSTE TAMAÑO WINRATE (-15%) ===== */
+.efficiency-box {
+  transform: scale(0.85);
+  transform-origin: center;
+}
