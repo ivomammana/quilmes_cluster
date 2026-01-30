@@ -57,6 +57,14 @@ function loadPlayerAverages() {
       console.log("TOTAL FILAS:", rows.length);
       debugRows(rows);
 
+      // WINRATE (M7)
+const winRate = rows[1]?.c[12]?.v ?? 0;
+document.getElementById("efficiencyValue").textContent = formatPct(winRate);
+
+
+
+
+
       // ============================
       // FOTO Y DATOS DEL JUGADOR
       // ============================
@@ -145,15 +153,17 @@ function renderGamesTable(rows) {
 
   thead.innerHTML = `
     <tr>
-      <th>GAME</th>
-      <th>PTS</th>
-      <th>REB</th>
-      <th>ASS</th>
-      <th>STL</th>
-      <th>BLK</th>
-      <th>2PT%</th>
-      <th>3PT%</th>
-      <th>TO</th>
+    <th>GAME</th>
+    <th>PTS</th>
+    <th>REB</th>
+    <th>ASS</th>
+    <th>STL</th>
+    <th>BLK</th>
+    <th>2PT%</th>
+    <th>2P (M/A)</th>
+    <th>3PT%</th>
+    <th>3P (M/A)</th>
+    <th>TO</th>
     </tr>
   `;
 
@@ -161,38 +171,53 @@ function renderGamesTable(rows) {
   let lastGameName = "";
 
   rows.forEach(row => {
-    const c = row?.c;
-    if (!c) return;
+  const c = row?.c;
+  if (!c) return;
 
-    if (c[0]?.v) lastGameName = c[0].v;
-    if (!lastGameName) return;
+  if (c[0]?.v) lastGameName = c[0].v;
+  if (!lastGameName) return;
 
-    const pts = c[1]?.v;
-    if (pts === null || pts === undefined) return;
+  const pts = c[1]?.v;
+  if (pts === null || pts === undefined) return;
 
-    const rebs = c[2]?.v ?? 0;
-    const assists = c[3]?.v ?? 0;
-    const steals = c[4]?.v ?? 0;
-    const blocks = c[5]?.v ?? 0;
-    const twoPtPct = c[8]?.v ?? 0;
-    const threePtPct = c[11]?.v ?? 0;
-    const turnovers = c[12]?.v ?? 0;
+  const rebs = c[2]?.v ?? 0;
+  const assists = c[3]?.v ?? 0;
+  const steals = c[4]?.v ?? 0;
+  const blocks = c[5]?.v ?? 0;
 
-    const tr = document.createElement("tr");
-    tr.classList.add("game-row");
-    tr.innerHTML = `
-      <td>${lastGameName}</td>
-      <td>${pts}</td>
-      <td>${rebs}</td>
-      <td>${assists}</td>
-      <td>${steals}</td>
-      <td>${blocks}</td>
-      <td>${formatPct(twoPtPct)}</td>
-      <td>${formatPct(threePtPct)}</td>
-      <td>${turnovers}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+  // % EXISTENTES (no se tocan)
+  const twoPtPct = c[8]?.v ?? 0;
+  const threePtPct = c[11]?.v ?? 0;
+
+  // NUEVOS DATOS M/A
+  const twoPtMade = c[6]?.v ?? 0;   // G
+  const twoPtAtt  = c[7]?.v ?? 0;   // H
+  const threePtMade = c[9]?.v ?? 0; // J
+  const threePtAtt  = c[10]?.v ?? 0; // K
+
+  const twoPtMA = `${twoPtMade}/${twoPtAtt}`;
+  const threePtMA = `${threePtMade}/${threePtAtt}`;
+
+  const turnovers = c[12]?.v ?? 0;
+
+  const tr = document.createElement("tr");
+  tr.classList.add("game-row");
+  tr.innerHTML = `
+    <td>${lastGameName}</td>
+    <td>${pts}</td>
+    <td>${rebs}</td>
+    <td>${assists}</td>
+    <td>${steals}</td>
+    <td>${blocks}</td>
+    <td>${formatPct(twoPtPct)}</td>
+    <td>${twoPtMA}</td>
+    <td>${formatPct(threePtPct)}</td>
+    <td>${threePtMA}</td>
+    <td>${turnovers}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
 
   setupGamesToggle();
 }
