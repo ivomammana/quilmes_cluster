@@ -164,6 +164,7 @@ function renderGamesTable(rows) {
     <th>3PT%</th>
     <th>3P (M/A)</th>
     <th>TO</th>
+    <th></th>
     </tr>
   `;
 
@@ -214,12 +215,25 @@ function renderGamesTable(rows) {
     <td>${formatPct(threePtPct)}</td>
     <td>${threePtMA}</td>
     <td>${turnovers}</td>
-  `;
+      <td>
+    <button class="toggle-games-btn view-btn" onclick="handleViewClick('${lastGameName}')">
+  Ver
+</button>
+
+  </td>
+`;
+
+ 
   tbody.appendChild(tr);
 });
 
 
   setupGamesToggle();
+}
+
+function handleViewClick(gameName) {
+  const encoded = encodeURIComponent(gameName);
+  window.location.href = `game.html?sheet=${encoded}`;
 }
 
 function setupGamesToggle() {

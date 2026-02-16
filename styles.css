@@ -882,3 +882,192 @@ section h2 {
   transform: scale(0.85);
   transform-origin: center;
 }
+
+.game-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.game-table td {
+  border: 1px solid #444;
+  padding: 6px;
+  text-align: center;
+}
+
+.header-row td {
+  font-weight: bold;
+  background-color: #111;
+}
+
+.total-row td {
+  font-weight: bold;
+  background-color: #1f1f1f;
+}
+
+.team-row td {
+  font-weight: bold;
+  background: #000;
+  text-align: left;
+}
+
+.header-row th {
+  background: #111;
+  font-weight: bold;
+}
+
+.total-row td {
+  font-weight: bold;
+  background: #1f1f1f;
+}
+
+/* ===== GAME BOXSCORE TABLES ===== */
+
+.game-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-bottom: 36px;
+  background: linear-gradient(135deg, #0b0b0b, #151515);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.game-table th,
+.game-table td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* HEADER */
+.game-table .header-row th {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: rgba(255,255,255,0.03);
+}
+
+/* Player column aligned left */
+.game-table td:first-child,
+.game-table th:first-child {
+  text-align: left;
+  padding-left: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Totals row */
+.game-table .total-row td {
+  font-weight: 700;
+  background: rgba(255,122,0,0.08);
+  color: #ff7a00;
+}
+
+/* Row hover effect */
+.game-table tbody tr:hover {
+  background: rgba(255,255,255,0.03);
+  transition: background 0.2s ease;
+}
+
+/* Subtle separation between tables */
+.game-table + .game-table {
+  margin-top: 10px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .game-table {
+    font-size: 0.7rem;
+  }
+
+  .game-table th,
+  .game-table td {
+    padding: 6px 4px;
+  }
+}
+
+/* ===== GAME PAGE LAYOUT ===== */
+
+.game-wrapper {
+  max-width: 1200px;
+  margin: 40px auto 60px auto;
+  padding: 0 16px;
+}
+
+#gameTitle {
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+/* ===== BACK BUTTON ===== */
+
+.game-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-button {
+  background: linear-gradient(135deg, #ff7a00, #ff5500);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255,122,0,0.25);
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255,122,0,0.4);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+.game-table {
+  margin-bottom: 36px;
+}
+.game-table {
+  margin-bottom: 50px;
+}
+
+.game-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.game-table th,
+.game-table td {
+  text-align: center;
+  padding: 6px;
+}
+
+.game-table th:first-child,
+.game-table td:first-child {
+  text-align: left;
+}
+
+.view-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+.view-btn {
+  background-color: #ff7a00; /* naranja */
+  color: #ffffff;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  background-color: #e66d00; /* naranja más oscuro al hover */
+  transform: translateY(-1px);
+}
